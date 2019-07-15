@@ -1,0 +1,87 @@
+#############################################################
+first rule of pool club is: bring 50ps
+second rule of pool club is: bring 50ps
+
+pool table emptied at start off tournament
+
+
+
+winner takes 85% of what's in the table at the end, in cash, rounded up to nearest 50p, in 50ps direct from the mo'fo table
+
+
+
+
+
+#############################################################
+solo-pool-records.info
+whothebest.com
+crazypool.com etc etc
+
+- videos must be HD or above in resolution
+- camera position must be fixed and show the whole pool table at all times
+- begins when the cue bool is struck
+- any ball at all including the black can be potted after the break#
+- all balls have the same value, including the white which much be potted last
+- the timer stops from the last frame of video where the white is visible on the table
+- aim of the game is to pot all the balls as quickly as possible in any order
+- if you miss, you must wait for all the balls to stop before trying any other shot
+- no fouling
+- must wait for cue ball to stop moving before all shots
+- if cue ball leaves the table or is potted it must be placed behind the line (not the D) to continue
+-
+- community will vote on authenticity of video
+- Properly policed. It must not, repeat not, turn into an all night rave
+
+
+videos use youtube only
+
+
+use eloquent
+    mailtrap
+    youtube api
+    facebook login
+    php unit
+    vue js
+    sass
+
+    put it on github
+
+users
+-
+-
+- role [user|admin]
+
+tables
+- tableID
+- tableName [7x4 uk, 6x3 uk, netted or mechanism etc etc etc]
+- tableDescription
+
+
+records
+- recordID
+- userID
+- tableID
+- verificationID [if filled with adminID then it is verified by that person]
+- recordDescription
+
+
+videos
+- recordID
+- userID
+- videoDescription
+
+
+votes
+- userID
+- recordID [vote on record]
+- videoID [vote on a record's vid]
+- voteTypeID
+- rating [5 star rating]
+
+vote types
+- voteTypeID
+- voteTypeName [authenticity, style, balls, spawn, cuntishness]
+
+
+charts [cron job every 10 minutes - countdown on page for refresh]
+- a page generated based on the 
