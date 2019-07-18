@@ -14,12 +14,13 @@
 Route::get('/', function () {
 
     return view('welcome');
-//echo 'cock<br/>';
-//$hashed_random_password = Hash::make('viewfinder');
-//echo $hashed_random_password;
 
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('{path}', "HomeController@index")->where( 'path', '(A-z\d-\/_.]+)?' );
+
+Route::fallback('HomeController@index');
