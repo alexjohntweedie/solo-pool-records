@@ -18,27 +18,31 @@
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Type</th>
+                      <th>Role</th>
+                      <th>Registered At</th>                      
                       <th>Modify</th>
                     </tr>
+
+                    <tr v-for="user in users" :key="user.id">
+                        <td>{{user.id}} </td>
+                        <td>{{user.name}}</td>        
+                        <td>{{user.email}}</td>
+                        <td><span class="tag tag-success">{{'role here' | upText}}</span></td>
+                        <td>{{user.created_at | myDate}}</td>
+                        <td>
+                            <a href="#">
+                                <i class="fa fa-edit blue"></i>
+                            </a>
+                            &nbsp;
+                            <a href="#">
+                                <i class="fa fa-trash red"></i>
+                            </a>
+                        </td>                                                                              
+                    </tr>
+
                   </thead>
                   <tbody>
 
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>
-                        <a href="#">
-                            <i class="fa fa-edit blue"></i>
-                        </a>
-                        &nbsp;
-                        <a href="#">
-                            <i class="fa fa-trash red"></i>
-                        </a>
-                      </td>
-                    </tr>
 
 
                   </tbody>
@@ -65,7 +69,7 @@
 
               <form @submit.prevent="createUser">
 
-              <div class="modal-body">
+              <div class="modal-body"> 
                 
 
 
@@ -140,7 +144,7 @@
         },
         methods: {
             loadUsers() {
-                axios.get("api/user").then(({ data }) => (this.users = data));
+                axios.get("api/user").then(({ data }) => (this.users = data.data));
             },
 
             createUser(){
