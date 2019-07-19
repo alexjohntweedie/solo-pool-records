@@ -1934,17 +1934,26 @@ __webpack_require__.r(__webpack_exports__);
     createUser: function createUser() {
       this.$Progress.start(); // start progress bar
 
-      this.form.post('api/user');
-      this.$Progress.finish(); // end progress bar
-
+      this.form.post('api/user').then(function () {
+        Fire.$emit('CreateUser'); // custom event emitted for refresh table
+      });
+      $('#addNew').modal('hide');
       toast.fire({
         type: 'success',
         title: 'User Created Successfully'
       });
+      this.$Progress.finish(); // end progress bar
     }
   },
   created: function created() {
+    var _this2 = this;
+
     this.loadUsers(); // default function
+
+    Fire.$on('CreateUser', function () {
+      // listen for AfterCreate and update table
+      _this2.loadUsers();
+    }); // setInterval(() => this.loadUsers(), 3000); // this blindly updates every 3 secs
   }
 });
 
@@ -74101,7 +74110,9 @@ Vue.filter('upText', function (text) {
 });
 Vue.filter('myDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(created).format('MMMM Do YYYY, h:mma');
-});
+}); // use Fire to create custom event
+
+window.Fire = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

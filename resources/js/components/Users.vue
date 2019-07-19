@@ -149,18 +149,29 @@
 
             createUser(){
                 this.$Progress.start(); // start progress bar
-                this.form.post('api/user');
                 
+                this.form.post('api/user').then(() => {
+                    Fire.$emit('CreateUser'); // custom event emitted for refresh table
+                });
 
-                this.$Progress.finish(); // end progress bar
+                $('#addNew').modal('hide');
+
                 toast.fire({
                   type: 'success',
                   title: 'User Created Successfully'
                 }) 
+
+                this.$Progress.finish(); // end progress bar
+
             }
         },
         created() {
             this.loadUsers(); // default function
+
+            Fire.$on('CreateUser',() => { // listen for AfterCreate and update table
+                this.loadUsers();
+            });
+            // setInterval(() => this.loadUsers(), 3000); // this blindly updates every 3 secs
         }
     } 
 </script>
