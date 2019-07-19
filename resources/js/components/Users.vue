@@ -148,11 +148,18 @@
             },
 
             createUser(){
+                this.$Progress.start(); // start progress bar
                 this.form.post('api/user');
-                      
+                
+
+                this.$Progress.finish(); // end progress bar
+                toast.fire({
+                  type: 'success',
+                  title: 'User Created Successfully'
+                }) 
             }
         },
-        mounted() {
+        created() {
             this.loadUsers(); // default function
         }
     } 
