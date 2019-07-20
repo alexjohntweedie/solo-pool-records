@@ -7,7 +7,7 @@
               <div class="card-header">
                 <h3 class="card-title">Users</h3>
                     <div class="card-tools">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#addNew">Add New&nbsp;<i class="fa fa-user-plus fa-fw"></i></button>
+                        <button class="btn btn-success" @click="newModal">Add New&nbsp;<i class="fa fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -146,9 +146,20 @@
             }
         },
         methods: {
+            newModal(){
+                this.editmode = false;
+                this.form.reset();
+                $('#addNew').modal('show');
+            },             
+            editModal(user){
+                this.editmode = true;
+                this.form.reset();
+                $('#addNew').modal('show');
+                this.form.fill(user);
+            },                  
             deleteUser(id) {
                 toast.fire({
-                  title: 'Are you piss?',
+                  title: 'Are you sure?',
                   text: "You won't be able to revert this!",
                   type: 'warning',
                   showCancelButton: true,
@@ -190,17 +201,7 @@
             updateUser() {
                 Console.log('Editing Data');
             },  
-            editModal(user){
-                this.editmode = true;
-                this.form.reset();
-                $('#addNew').modal('show');
-                this.form.fill(user);
-            },       
-            newModal(){
-                this.editmode = false;
-                this.form.reset();
-                $('addNew').modal('show');
-            },
+
             loadUsers() {
                 axios.get("api/user").then(({ data }) => (this.users = data.data));
             },
